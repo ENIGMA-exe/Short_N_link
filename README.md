@@ -1,4 +1,4 @@
-# Short-N-
+# Short-N-Link
 Short-N is an web application that will help you to shorter your links
 
 ## APP link
