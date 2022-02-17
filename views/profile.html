@@ -1,0 +1,166 @@
+<style>
+/**{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}*/
+/*body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}*/
+.container{
+    width: 60%;
+    height: 70%;
+    background: #06070d;
+    color: white;
+    /*border: 1px solid white;*/
+}
+.container>.hbar{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*border: 1px solid white;*/
+}
+.container>.hbar>p{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    /*border: 1px solid white;*/
+}
+.container>.hbar>p>span{
+    margin-left: 3%;
+}
+.container>.hbar>.admin{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /*border: 1px solid white;*/
+}
+.container>.hbar>.admin>.logo{
+    width: 20%;
+    height: 100%;
+    font-size: 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /*border: 1px solid white;*/
+}
+.container>.hbar>.admin>.logo>i{
+    color: white;
+}
+.container>.hbar>.admin>#user-name{
+    width: 73%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 4%;
+    /*margin-left: 2%;*/
+    /*border: 1px solid white;*/
+}
+.container>.heading{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #15191e;
+    /*border: 1px solid white;*/
+}
+.container>.heading>.sub-heading{
+    font-size: 1.2rem;
+}
+.container>.heading>.sub-heading , .container>.dbox>.data>.sub-data{
+    width: 30%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-weight: bold;
+    overflow-x: scroll;
+    /*border: 1px solid white;*/
+}
+.container>.heading>.sub-heading::-webkit-scrollbar,.container>.dbox>.data>.sub-data::-webkit-scrollbar{
+    display: none;
+}
+
+#ourl,#ourl-value{
+    width: 45%;
+    padding-left: 1%;
+}
+#exp,#exp-value{
+    width: 20%;
+}
+#surl-value{
+    /*display: block;*/
+    /*padding-left: 5%;*/
+    justify-content: flex-start;
+    overflow-x: scroll;
+}
+.container>.dbox{
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
+    /*border: 1px solid white;*/
+}
+.container>.dbox::-webkit-scrollbar{
+    display: none;
+}
+.container>.dbox>.data{
+    width: 100%;
+    height: 15%;
+    margin-top: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #292f34;
+    /*border: 1px solid white;*/
+}
+</style>
+
+<div class="container">
+
+    <div class="hbar">
+        <div class="admin">
+            <div class="logo">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <span id="user-name">name</span>
+        </div>
+        
+
+        <p>total links <span id="total-links">10</span></p>
+    </div>
+
+    <div class="heading">
+        <div class="sub-heading" id="surl">Short URL</div>
+        <div class="sub-heading" id="ourl">Original URL</div>
+        <div class="sub-heading" id="exp">Expire</div>
+    </div>
+
+    <div class="dbox">
+        <!-- <div class="data">
+            <div class="sub-data" id="surl-value"></div>
+            <div class="sub-data" id="ourl-value"></div>
+            <div class="sub-data" id="exp-value">within 24 hours</div>
+        </div> -->
+    </div>
+
+</div>
+
+<script>
+    document.getElementsByClassName('container')[0].addEventListener('click',function(e){
+        e.stopPropagation()
+    },false)
+</script>

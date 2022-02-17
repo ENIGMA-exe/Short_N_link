@@ -1,0 +1,298 @@
+<style>
+    .bg{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .msg{
+        width:70%;
+        height: 6%;
+        display: none;
+        align-items: center;
+        color: rgb(51, 49, 49);
+        background-color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: bold;
+        margin-bottom: 1%;
+        font-size: 1.5rem;
+        border-radius: 10px;
+        padding-left: 6%;
+    }
+
+    .l_main {
+        height: 85%;
+        width: 70%;
+        display: flex;
+        align-items: center;
+        background-color: white;
+        position: relative;
+    }
+
+    .login {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login>p:nth-child(1) {
+        font-family: sans-serif;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-top: 10%;
+        margin-bottom: 15%;
+    }
+
+    .login>#signup {
+        margin-top: 5%;
+        font-size: 1rem;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+
+    .login>#signup>span {
+        color: rgb(103, 168, 241);
+        cursor: pointer;
+    }
+
+    .fillup {
+        width: 95%;
+        height: 10%;
+        margin-bottom: 2%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 40px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .fillup>i {
+        font-size: 2.2rem;
+        color: rgb(113, 46, 236);
+    }
+
+    .fillup>input {
+        width: 85%;
+        height: 100%;
+        font-size: 1.2rem;
+        text-align: left;
+        padding-left: 1%;
+        border-radius: 40px;
+        outline: none;
+        border: none;
+    }
+
+    #pass {
+        width: 75%;
+    }
+
+    #eye {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .login>button {
+        width: 30%;
+        height: 8%;
+        border: none;
+        border-radius: 40px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 5%;
+        cursor: pointer;
+        color: white;
+        background-image: linear-gradient(to right, rgb(37, 37, 201), rgb(120, 45, 190));
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .login>#fo_p {
+        font-size: 0.9rem;
+        font-family: sans-serif;
+        font-weight: bold;
+        color: rgb(103, 168, 241);
+        cursor: pointer;
+        margin-top: 1%;
+    }
+/*..............................................*/
+    .signup{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .signup>p{
+        font-family: sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+         margin-top: 10%;
+         margin-bottom: 6%;
+    }
+    .signup>button{
+        width: 30%;
+        height: 8%;
+        border: none;
+        border-radius: 40px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 4%;
+        cursor: pointer;
+        color: white;
+        background-image: linear-gradient(to right, rgb(37, 37, 201), rgb(120, 45, 190));
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .signup>#login{
+        margin-top: 3%;
+        font-size: 1rem;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+    .signup>#login>span{
+        color: rgb(103, 168, 241);
+        cursor: pointer;
+    }
+/*..............................................*/
+    .slider{
+        height: 100%;
+        width: 50%;
+        position: absolute;
+        background-color: white;
+        display: block;
+        /*left: 0;
+        right: none;*/
+    }
+    .img_area {
+        height: 100%;
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+    }
+    .img_area>.close_tab{
+        position: absolute;
+        width: 20%;
+        height: 5%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 40px;
+        top: 1%;
+        right: 1%;
+        font-family: sans-serif;
+        font-weight: bold;
+        color: white;
+        background-image: linear-gradient(to right,rgb(255, 94, 0),rgb(255, 217, 0));
+    }
+
+    .img_area>.img_sec {
+        width: 100%;
+        height: 100%;
+    }
+
+    .img_area>.img_sec>img {
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+</style>
+
+    
+<div class="bg">
+    <div class="msg">please wait!</div>
+    <div class="l_main">
+
+        <div class="login">
+            <p>heloo potato!</p>
+
+            <div class="fillup">
+                <i class="fas fa-users"></i>
+                <input id="userid" name="userid" type="text" placeholder="Email">
+            </div>
+
+            <div class="fillup">
+                <i class="fas fa-lock"></i>
+                <input id="pass" name="pass" type="password" placeholder="password">
+                <i class="fas fa-eye" id="eye"></i>
+            </div>
+
+            <button onclick="login()">Login</button>
+
+            <p id="signup">don't have an account?<span id="click_1" onclick="left_slider()">create</span> </p>
+            <p id="fo_p">Forget password</p>
+        </div>
+    <!-- .................................................................................................................. -->
+        <div class="signup">
+            <p>lets join Potato!</p>
+
+            <div class="fillup">
+                <i class="fas fa-users"></i>
+                <input id="f_name" name="f_name" type="text" placeholder="first name">
+            </div>
+
+            <div class="fillup">
+                <i class="fas fa-users"></i>
+                <input id="l_name" name="l_name" type="text" placeholder="last name">
+            </div>
+
+            <div class="fillup">
+                <i class="fas fa-envelope"></i>
+                <input id="user_em" name="user_em" type="text" placeholder="email">
+            </div>
+
+            <div class="fillup">
+                <i class="fas fa-lock"></i>
+                <input id="user_pass" name="user_pass" type="password" placeholder="password">
+            </div>
+
+            <div class="fillup">
+                <i class="fas fa-lock"></i>
+                <input id="user_pass_2" name="user_pass_2" type="password" placeholder="password(re type)">
+            </div>
+
+            <button onclick="signup()">Register</button>
+
+            <p id="login">Already have an account.<span id="click_2" onclick= "right_slider()">login</span> </p>
+        </div>
+    <!-- .................................................................................................................. -->
+        <div class="slider">
+            <div class="img_area">
+                <!-- <div class="close_tab" onclick="m_close()">
+                    close
+                </div> -->
+                <div class="img_sec">
+                    <img src="./assets/demo.png" alt="">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    var slider = $(".slider");
+
+    function left_slider(){
+        slider.animate({left:'0',right:'50%'},'slow');
+    };
+
+    function right_slider(){
+        slider.animate({right:'0',left:'50%'},'slow');
+    };
+
+    document.getElementsByClassName('bg')[0].addEventListener('click',function(e){
+        e.stopPropagation()
+    },false)
+
+
+</script>

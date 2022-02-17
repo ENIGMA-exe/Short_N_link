@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link async rel="stylesheet" href="style.css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script async defer src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script>
+
+    <script async defer type="application/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="modal"></div>
+
+    <div class="header">
+
+        <div class="header_content">
+            <div class="header-title">No Matter How Long Is your Link</div>
+            <div class="header-para">
+                <p>
+                    <b style="color:rgb(0, 110, 255);">SHORT-N</b> is the fastest and safest way to buy, sell, store and
+                    accept cryptocurrencies.
+                    No more having to wait or fall prey to fraudulent buyers or sellers.
+                </p>
+            </div>
+
+            <div class="bt-area">
+                <button onclick="getURLPannel()">Try Now</button>
+                <button onclick="getProfile()">Profile</button>
+            </div>
+            <!-- <div class="bt-area">
+                    <button>Profile</button>
+                </div> -->
+        </div>
+        <img class="header-img" id="front-img" src="assets/preview.png" alt="">
+
+    </div>
+
+</body>
+<script>
+
+    var base_api = "{{base_api}}"
+    //console.log(base_api);
+
+    function authentication(){
+        if (Cookies.get('polynomial_auth') !== "" && Cookies.get('polynomial_auth') !== undefined && Cookies.get('polynomial_auth') !== null) {
+
+            document.getElementsByClassName("modal")[0].style.display = "none";
+            $(".modal").empty()
+
+        } else {
+
+            $(".modal").load('./login.html', function () {
+                document.getElementsByClassName("modal")[0].style.display = "flex";
+            })
+        }
+    }
+
+    authentication()
+
+
+    document.getElementsByClassName('modal')[0].addEventListener('click',function(e){
+        e.stopPropagation();
+        this.style.display = 'none';
+    },false)
+
+    //..................................LOGIN SIGNUP OPERATION....................................................................
+
+    function login(){
+        document.getElementsByClassName('msg')[0].style.display = "flex";
+        var data = {};
+        data.email = document.getElementById('userid').value;
+        data.pwd = document.getElementById('pass').value;
+
+        console.log(data)
+
+        if(data.email != "" & data.email!= undefined &data.pwd != "" &data.pwd!= undefined){
+            $.post(`${base_api}login`,data,(res)=>{
+
+                console.log(res);
+                
+                if(res != "invalid"){
+                    Cookies.set('polynomial_auth',res.user_id);
+                    Cookies.set('polynomial_data',JSON.stringify(res));
+
+
+                    document.getElementsByClassName("modal")[0].style.display = "none";
+                    $(".modal").empty()
+
+                }else{
+                    document.getElementsByClassName('msg')[0].style.display = "none";
+                    swal({
+                        title:"Invalid User",
+                        text:res.responseText,
+                        icon:"warning",
+                        button:"close!"
+                    })
+                    //console.log('invalid user');
+                }
+            })
+            .fail( function(res){
+
+                swal({
+                    title:res.status,
+                    text:res.responseText,
+                    icon:"warning",
+                    button:"close!"
+                })
+            })
+        }else{
+            document.getElementsByClassName('msg')[0].style.display = "none";
+            swal({
+                title:"Error",
+                text:"Please fill the form",
+                icon:"warning",
+                button:"close!"
+            })
+        }
+    }
+
+    function signup(){
+        var data = {};
+        data.fname = document.getElementById('f_name').value;
+        data.lname = document.getElementById('l_name').value;
+        data.email = document.getElementById('user_em').value;
+        data.pwd = document.getElementById('user_pass').value;
+        console.log(data)
+
+        if(data.fname !="" && data.lname !="" && data.email !="" && data.pwd !=""){
+                if(data.pwd == document.getElementById("user_pass_2").value){
+
+                    if(data.pwd.length>5){
+                        document.getElementsByClassName('msg')[0].style.display = "flex";
+
+                        $.post(`${base_api}signup`,data,function(res,status){
+                            
+                            swal({
+                                title:"success",
+                                text:res,
+                                icon:"success",
+                                button:"close!"
+                            })
+                            document.getElementsByClassName('msg')[0].style.display = "none";
+
+                            var inp = document.getElementsByTagName("input");
+                            Object.keys(inp).forEach((item)=>{
+                                inp[item].value = "";
+                            });
+                                
+                        })
+                        .fail( function(res){
+
+                            swal({
+                                title:res.status,
+                                text:res.responseText,
+                                icon:"warning",
+                                button:"close!"
+                            })
+                            document.getElementsByClassName('msg')[0].style.display = "none";
+                        })
+                        
+                        
+
+                    }else{
+                        swal({
+                            title:"Error",
+                            text:"very short password",
+                            icon:"error",
+                            button:"close!"
+                        })
+                        var inp = document.getElementsByTagName("input");
+                        Object.keys(inp).forEach((item)=>{
+                            inp[item].value = "";
+                        });
+                    }
+                }else{
+                    swal({
+                        title:"Error",
+                        text:"password & confirm password are not matching.",
+                        icon:"warning",
+                        button:"close!"
+                    })
+                    
+                }
+            }else{
+                swal({
+                    title:"Error",
+                    text:"Please fill the form",
+                    icon:"warning",
+                    button:"close!"
+                })
+            }
+    }
+
+    
+    //..................................URL OPERATION ...........................................................................
+
+    function getURLPannel(){
+        $(".modal").load('./Uop.html', function () {
+            document.getElementsByClassName("modal")[0].style.display = "flex";
+        })
+    }
+
+    async function short(){
+        var URL = document.getElementById('orurl').value;
+        let data = {
+            id: Cookies.get('polynomial_auth'),
+            URL:URL
+        }
+        //console.log(data)
+
+        if(URL !== "" && URL !== undefined){
+            $.post(`${base_api}shorturl`,data,function(res){
+                    document.getElementsByClassName('sub-box2')[0].style.display = 'flex';
+                    document.getElementById('sourl').value = res
+
+                    var userID = Cookies.get('polynomial_auth');
+
+                    $.get(`${base_api}user/${userID}`,function(res){
+                        Cookies.set(JSON.stringify(res));
+                    })
+            })
+        }
+    }
+
+
+    //..................................PROFILE OPERATION ...........................................................................
+
+    function getProfile(){
+        $(".modal").load('./profile.html', function () {
+            document.getElementsByClassName("modal")[0].style.display = "flex";
+
+            //var admin_data = JSON.parse(Cookies.get('polynomial_data'));
+
+            var userID = Cookies.get('polynomial_auth');
+            $.get(`${base_api}user/${userID}`,function(res){
+                var admin_data = res;
+
+                document.getElementById('user-name').innerText = admin_data.fname +" "+admin_data.lname;
+
+                document.getElementById('total-links').innerText = admin_data.links.length
+
+                for (var i=0; i<admin_data.links.length; i++){
+                    document.getElementsByClassName('dbox')[0].innerHTML += `
+                    <div class="data">
+                        <div class="sub-data" id="surl-value">${admin_data.links[i].SURL}</div>
+                        <div class="sub-data" id="ourl-value">${admin_data.links[i].URL}</div>
+                        <div class="sub-data" id="exp-value">within 24 hours</div>
+                    </div>
+                    `
+                }
+            })
+
+        })
+    }
+</script>
+
+</html>
