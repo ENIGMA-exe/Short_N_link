@@ -1,6 +1,7 @@
 # Short-N-Link
-Short-N is an web application that will help you to shorter your links
-
+Short-N is an web application that will help you to shorter your links (for 24 hours) </br></br>
+![alt text](https://github.com/ENIGMA-exe/Short_N_link/blob/main/Screenshot%20(41).png?raw=true)
+![alt text](https://github.com/ENIGMA-exe/Short_N_link/blob/main/Screenshot%20(42).png?raw=true)
 ## APP link
 https://short-n-link.herokuapp.com/  <br/>
 **NOTE: make sure that your browser allows popup**
